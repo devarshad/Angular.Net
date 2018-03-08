@@ -97,6 +97,7 @@
             margin-right: 10px;
             float: right;
         }
+
     </style>
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -105,8 +106,21 @@
     </script>
 </head>
 <body>
-    <h3>My Google Maps Demo</h3>
-    <div id="map-canvas" class="map"></div>
+    <div class="row">
+        <div class="col-md-3 pull-right">
+            <div id="irrelevantContainer">
+                <div class="form-group has-feedback">
+                    <input placeholder="Search by UserName or note" type="text" class="form-control input-sm">
+                    <span class="btn fa fa-search form-control-feedback" style="float: right; padding-right: 7px; margin-top: -29px; position: relative; width: 34px; background-color: #ccc;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map-canvas" class="map"></div>
+        </div>
+    </div>
     <script>
 
 
@@ -186,7 +200,7 @@
 
                             $('#okNote').one('click', function () {
                                 $('#myNote').parent().css({ 'overflow-y': 'auto' });
-                                $('#myNote').parent().html($('#myNote')[0].value);
+                                $('#myNote').parent().html($('#myNote')[0].value.replace(/\r?\n/g, '<br/>'));
                             });
                             $('#cancelNote').one('click', function () {
                                 $('#myNote')[0].value = "";
@@ -198,7 +212,7 @@
                     addOtherPostions(function () {
                         setTimeout(function () {
                             map.setCenter(currentLocation);
-                        },200);
+                        }, 200);
                     });
 
                 }, function () {
@@ -283,6 +297,5 @@
         }
 
     </script>
-
 </body>
 </html>
